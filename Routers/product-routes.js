@@ -25,7 +25,13 @@ route.get('/products', (req, res, next) => {
 
 route.patch('/product/:id', (req, res, next) => {
   db.Product.update(req.body, { where: { id: req.params.id } })
-    .then((response) => res.status(200).send(response))
+    .then((response) => {
+      
+      db.Product.findOne({ where: { id: req.params.id } })
+      .then((response) => res.status(201).send(response))
+      .catch((err) => res.status(400).send(err))
+      
+    })
     .catch((err) => res.status(400).send(err))
 })
 
