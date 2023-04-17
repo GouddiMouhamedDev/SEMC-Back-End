@@ -3,7 +3,7 @@ const route = express.Router()
 const db = require('../models')
 
 route.post('/createclient', (req, res, next) => {
-  db.Product.create(req.body)
+  db.Clients.create(req.body)
     .then((response) => res.status(200).send(response))
     .catch((err) => res.status(400).send(err))
 })
@@ -11,23 +11,23 @@ route.post('/createclient', (req, res, next) => {
 
 
 route.get('/clients/:id', (req, res, next) => {
-  db.Product.findOne({ where: { id: req.params.id } })
+  db.Clients.findOne({ where: { id: req.params.id } })
     .then((response) => res.status(201).send(response))
     .catch((err) => res.status(400).send(err))
 })
 
 
 route.get('/clients', (req, res, next) => {
-  db.Product.findAll()
+  db.Clients.findAll()
     .then((response) => res.status(200).send(response))
     .catch((err) => res.status(400).send(err))
 })
 
 route.patch('/client/:id', (req, res, next) => {
-  db.Product.update(req.body, { where: { id: req.params.id } })
+  db.Clients.update(req.body, { where: { id: req.params.id } })
     .then((response) => {
       
-      db.Product.findOne({ where: { id: req.params.id } })
+      db.Clients.findOne({ where: { id: req.params.id } })
       .then((response) => res.status(201).send(response))
       .catch((err) => res.status(400).send(err))
       
@@ -36,7 +36,7 @@ route.patch('/client/:id', (req, res, next) => {
 })
 
 route.delete('/client/:id', (req, res, next) => {
-  db.Product.destroy({ where: { id: req.params.id } })
+  db.Clients.destroy({ where: { id: req.params.id } })
     .then((response) => { res.status(204).send() })
     .catch((err) => res.status(400).send(err))
 })
