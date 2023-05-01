@@ -10,8 +10,8 @@ route.post('/createDevis', (req, res, next) => {
 
 
 
-route.get('/Devis/:NumDevis', (req, res, next) => {
-  db.Devis.findOne({ where: { NumDevis: req.params.NumDevis } })
+route.get('/Devis/:id', (req, res, next) => {
+  db.Devis.findOne({ where: { id: req.params.id } })
     .then((response) => res.status(201).send(response))
     .catch((err) => res.status(400).send(err))
 })
@@ -23,11 +23,11 @@ route.get('/Devis', (req, res, next) => {
     .catch((err) => res.status(400).send(err))
 })
 
-route.patch('/Devis/:NumDevis', (req, res, next) => {
-  db.Devis.update(req.body, { where: { NumDevis: req.params.NumDevis } })
+route.patch('/Devis/:id', (req, res, next) => {
+  db.Devis.update(req.body, { where: { id: req.params.id } })
     .then((response) => {
       
-      db.Devis.findOne({ where: { NumDevis: req.params.NumDevis } })
+      db.Devis.findOne({ where: { id: req.params.id } })
       .then((response) => res.status(201).send(response))
       .catch((err) => res.status(400).send(err))
       
@@ -35,8 +35,8 @@ route.patch('/Devis/:NumDevis', (req, res, next) => {
     .catch((err) => res.status(400).send(err))
 })
 
-route.delete('/Devis/:NumDevis', (req, res, next) => {
-  db.Devis.destroy({ where: { NumDevis: req.params.NumDevis } })
+route.delete('/Devis/:id', (req, res, next) => {
+  db.Devis.destroy({ where: { id: req.params.id } })
     .then((response) => { res.status(204).send() })
     .catch((err) => res.status(400).send(err))
 })

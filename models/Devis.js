@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
       }
     });
-  
+    //NumDevis auto-increment
     Devis.beforeCreate(async (devis) => {
       const lastDevis = await Devis.findOne({
         order: [['NumDevis', 'DESC']]
