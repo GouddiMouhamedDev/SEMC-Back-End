@@ -6,6 +6,8 @@ const userRoutes=require("./Routers/user-routes")
 const productRoutes=require("./Routers/product-routes")
 const registerRoutes=require("./Routers/register-routes")
 const clientsRoutes=require("./Routers/clients-routes")
+const DevisRoutes=require("./Routers/Devis-routes")
+const contDevisRoutes=require("./Routers/contDevis-routes")
 const cors = require('cors');
 app.use(cors());
  app.use(express.urlencoded({extended:true}))
@@ -14,6 +16,9 @@ app.use('/',userRoutes)
 app.use('/',productRoutes)
 app.use('/',registerRoutes)
 app.use('/',clientsRoutes)
+app.use('/',DevisRoutes)
+app.use('/',contDevisRoutes)
+
  db.sequelize.sync().then(()=>{
    app.listen(port, () => {
       console.log(`Server started on port ${port}`)
