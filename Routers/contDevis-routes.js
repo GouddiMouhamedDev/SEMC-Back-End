@@ -24,20 +24,21 @@ route.get('/contDevis', (req, res, next) => {
 })
 
 route.patch('/contDevis/:id', (req, res, next) => {
-  db.contDevis.update({NumDevis:req.body.NumDevis,
-    idClients:req.body.idClients,
-    NomProduct:req.body.NomProduct,
-    Qnt:req.body.Qnt,
-    PrixUnitTTC:req.body.PrixUnitTTC,
+  db.contDevis.update({
+    NumDevis: req.body.NumDevis,
+    idClients: req.body.idClients,
+    NomProduct: req.body.NomProduct,
+    Qnt: req.body.Qnt,
+    PrixUnitTTC: req.body.PrixUnitTTC,
     PrixTotalTTC: req.body.Qnt * req.body.PrixUnitTTC,
-    TVA:req.body.TVA
-   }, { where: { id: req.params.id } })
+    TVA: req.body.TVA
+  }, { where: { id: req.params.id } })
     .then((response) => {
-      
+
       db.contDevis.findOne({ where: { id: req.params.id } })
-      .then((response) => res.status(201).send(response))
-      .catch((err) => res.status(400).send(err))
-      
+        .then((response) => res.status(201).send(response))
+        .catch((err) => res.status(400).send(err))
+
     })
     .catch((err) => res.status(400).send(err))
 })
