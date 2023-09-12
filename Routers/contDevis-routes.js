@@ -11,10 +11,11 @@ route.post('/createcontDevis', (req, res, next) => {
 
 
 route.get('/contDevis/:id', (req, res, next) => {
-  db.contDevis.findOne({ where: { id: req.params.id } })
+  db.contDevis.findAll({ where: { NumDevis: req.params.id } })
     .then((response) => res.status(201).send(response))
     .catch((err) => res.status(400).send(err))
-})
+});
+
 
 
 route.get('/contDevis', (req, res, next) => {
@@ -23,7 +24,7 @@ route.get('/contDevis', (req, res, next) => {
     .catch((err) => res.status(400).send(err))
 })
 
-route.patch('/contDevis/:id', (req, res, next) => {
+route.patch('/contenuDevis/:id', (req, res, next) => {
   db.contDevis.update({
     NumDevis: req.body.NumDevis,
     idClients: req.body.idClients,
